@@ -1,0 +1,12 @@
+header {
+  margin: auto;
+  text-align: center;
+}
+
+button {
+  color: blue;
+}
+
+#confirmTextButton {
+  visibility: collapse;
+}
