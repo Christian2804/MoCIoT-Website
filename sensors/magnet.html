@@ -1,47 +1,34 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8">
+    <meta lang="de-DE">
 
-<head>
-  <meta charset="utf-8">
-  <meta lang="de-DE">
+    <title>Der Magnetsensor</title>
 
-  <title>Die Welt des Magnetsensors</title>
+    <meta name="author" content="Christian Navolskyi">
+    <meta name="description" content="This is a website for the lecture Mobile Computing and Internet of Things">
 
-  <meta name="author" content="Christian Navolskyi">
-  <meta name="description" content="This is a website for the lecture Mobile Computing and Internet of Things">
+    <link rel="stylesheet" href="../css/index.css">
 
-  <link rel="stylesheet" href="../css/index.css">
-  <script src="../js/magnet.js"></script>
-</head>
+    <script src="../js/magnet.js"></script>
+    <script src="../js/header.js"></script>
+  </head>
 
-<body onload="loadCompass()">
-  <header>
-    <ul id="indexTabs">
-      <li><a href="https://christian2804.github.io/MoCIoT-Website/index.html">Startseite</a></li>
-      <li><a href="https://christian2804.github.io/MoCIoT-Website/sensors/magnet.html">Magnet</a></li>
-      <li><a href="https://christian2804.github.io/MoCIoT-Website/sensors/acceleration.html">Beschleunigung</a></li>
-      <li><a href="https://christian2804.github.io/MoCIoT-Website/sensors/gyroscope.html">Lage</a></li>
-      <li>Standort
-        <div>
-          <a href="https://christian2804.github.io/MoCIoT-Website/sensors/location/weather.html">Wetter</a>
-          <a href="https://christian2804.github.io/MoCIoT-Website/sensors/location/maps.html">Karte</a>
-        </div>
-      </li>
-      <li>(Puls)</li>
-    </ul>
-  </header>
+  <body onload="loadCompass(); loadHeader('../header.html')">
+    <div id="header"></div>
 
-  <h3>Willkommen bei den Magneten</h3>
+    <h3>Willkommen bei den Magneten</h3>
+    <p>Hier dreht sich alles zu den Magneten.
+      Sie haben gerade keinen dabei,
+      kein Problem nehmen Sie einfach die Erde als Ersatz.</p>
 
-  <p>Hier dreht sich alles zu den Magneten.
-    Sie haben gerade keinen dabei,
-    kein Problem nehmen Sie einfach die Erde als einen Ersatz.</p>
+    <h6>Dieser Kompass zeigt nach Westen. Warum? Weil er es kann.</h6>
+    <canvas id="aligningCompass" width="600" height="600">
+      <img id="compassImage" src="../res/compass.svg" alt="Das ist ein Kompass der nach Westen zeigt.">
+    </canvas>
 
-  <h6>Dieser Kompass zeigt nach Westen. Warum? Weil er es kann.</h6>
-  <canvas id="aligningCompass" width="600" height="600">
-    <img id="compassImage" src="../res/compass.svg" alt="Das ist ein Kompass der nach Westen zeigt.">
-  </canvas>
-
-  <h6>Dieser Text zeigt nach Norden, also wenn Sie einen Kompass brauchen nehmen Sie lieber den Text.</h6>
-  <canvas id="aligningText" width="600" height="600"></canvas>
-</body>
+    <h6>Dieser Text zeigt nach Norden, also wenn Sie einen Kompass brauchen nehmen Sie lieber den Text.</h6>
+    <canvas id="aligningText" width="600" height="600"></canvas>
+  </body>
+</html>

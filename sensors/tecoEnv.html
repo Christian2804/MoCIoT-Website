@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta lang="de-DE">
+
+    <title>Der TECO Environment Sensor</title>
+
+    <meta name="author" content="Christian Navolskyi">
+    <meta name="description" content="This is a website for the lecture Mobile Computing and Internet of Things">
+
+    <link rel="stylesheet" href="../css/index.css">
+
+    <script src="../js/header.js"></script>
+  </head>
+
+  <body onload="loadHead('../header.html')">
+    <div id="header"></div>
+
+    <h3>Willkommen beim TECO Environment Sensor</h3>
+    <p>Hier können Sie entweder den Sensor direkt über Bluetooth Low Energy auslesen
+      oder die Datenbank anfragen um sich die letzen Werte ausgeben zu lassen.
+    </p>
+
+    <button type="button" name="button">Sensor auslesen</button>
+    <button type="button" name="button">Datenbank auslesen</button>
+
+    <ul>
+      <tr>
+        <th>Temperatur</th>
+        <th>Luftfeuchtigkeit</th>
+        <th>etc...</th>
+      </tr>
+      <tr>
+        <td id="temperature"></td>
+        <td id="humidity"></td>
+        <td id=""></td>
+      </tr>
+    </ul>
+  </body>
+</html>
