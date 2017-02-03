@@ -5,7 +5,7 @@ if (window.DeviceOrientationEvent) {
 }
 
 function handleOrientation(event) {
-  var beta = event.beta;
+  var beta = event.beta * Math.PI / 180;
 
   var text = document.getElementById("longText");
 
