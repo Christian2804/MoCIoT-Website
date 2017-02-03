@@ -1,4 +1,8 @@
-window.addEventListener("devicemotion", handleDeviceMotion, true);
+if (window.DeviceMotionEvent) {
+  window.addEventListener("devicemotion", handleDeviceMotion, true);
+} else {
+  alert("Es tut mir Leid, aber Ihr Gerät unterstützt diesen Sensor nicht.");
+}
 
 function handleDeviceMotion(event) {
   var text = document.getElementById("scalingText");
