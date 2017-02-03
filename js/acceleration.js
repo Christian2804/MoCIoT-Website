@@ -4,12 +4,10 @@ function handleDeviceMotion(event) {
   var text = document.getElementById("scalingText");
   var fontSize = text.style.fontSize;
 
-  var deviceAcceleration = event.acceleration;
+  var deviceAcceleration = event.accelerationIncludingGravity;
   var x = deviceAcceleration.x;
   var y = deviceAcceleration.y;
   var z = deviceAcceleration.z;
-
-  console.log("x is:" + x + " y is: " + y + " z is: " + z);
 
   var sumArray = Math.sqrt(x*x + y*y + z*z);
   var array = loadArray();
@@ -23,8 +21,6 @@ function handleDeviceMotion(event) {
   } else {
     fontSize = "10px";
   }
-
-  text.innerHTML = "average is: " + average;
 }
 
 function getAverage (array) {
@@ -45,7 +41,6 @@ function addAndStore (array, number) {
 
 function loadArray() {
   var array = localStorage.getItem("sumArray");
-  var test = [122];
   if (array === null || array.length === 0) {
     var newArray = [0];
     localStorage.setItem("sumArray", JSON.stringify(newArray));
