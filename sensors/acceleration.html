@@ -11,10 +11,12 @@
 
     <link rel="stylesheet" href="../css/index.css">
 
+    <script src="../js/jquery-3.1.1.min.js"></script>
     <script src="../js/header.js"></script>
+    <script src="../js/acceleration.js"></script>
   </head>
 
-  <body onload="loadHeader('../header.html')">
+  <body onload="loadHeader('../header.html'); clearStorage()">
     <div id="header"></div>
 
     <h3>Willkommen beim Beschleunigungssensor</h3>
@@ -23,7 +25,7 @@
       Probieren Sie es aus!
     </p>
 
-    <h6>Dieser Text passt sich ihrer Bewegung an.</h6>  <!-- Still, normale Größe. Laufen, etwas größer. Rennen, schwarz und Musik. -->
+    <h4>Dieser Text passt sich ihrer Bewegung an.</h4>  <!-- Still, normale Größe. Laufen, etwas größer. Rennen, schwarz und Musik. -->
     <p id="scalingText">Versuchen Sie das Gerät möglichst still zu halten oder legen Sie es auf den Tisch.
       Wie Sie sehen bleibt die Schrift klein, sodass man sie gut lesen kann.
       Nehmen Sie das Gerät nun in die Hand und laufen Sie etwas damit herum oder bewegen Sie es in Ihrer Hand etwas hin und her.
