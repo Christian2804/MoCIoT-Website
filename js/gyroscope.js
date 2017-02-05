@@ -5,10 +5,10 @@ if (window.DeviceOrientationEvent) {
 }
 
 function handleOrientation(event) {
-  var beta = event.beta * Math.PI / 180;
+  var alpha = event.alpha * Math.PI / 180;
 
   var text = document.getElementById("longText");
 
-  text.style.transform = "rotate(" + beta + "deg)";
+  text.style.transform = "rotate(" + alpha + "deg)";
 
 }
