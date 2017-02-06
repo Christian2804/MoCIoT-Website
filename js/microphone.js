@@ -32,7 +32,16 @@ if (navigator.getUserMedia) {
 
           var average = values / length;
 
-          storeNumber(average);
+          if (average > 10 && !recording) {
+            startRecording();
+          } else if (average < 2) {
+            stopRecording();
+          }
+
+          if (recording) {
+            storeNumber(average);
+          }
+
         }
     },
     function(err) {
@@ -41,6 +50,8 @@ if (navigator.getUserMedia) {
 } else {
   console.log("getUserMedia not supported");
 }
+
+var recording = false;
 
 function storeNumber(number) {
   var currentSum = JSON.parse(localStorage.getItem("sum"));
@@ -56,7 +67,7 @@ function storeNumber(number) {
   }
 }
 
-function getAverage() {
+function stopRecording() {
   var sum = JSON.parse(localStorage.getItem("sum"));
   if (sum === null) {
     return 0;
@@ -66,12 +77,16 @@ function getAverage() {
 
     document.getElementById("smellResult").innerHTML = result;
   }
+
+  recording = false;
 }
 
-function startAveraging() {
+function startRecording() {
   // reset sum and counter
   localStorage.setItem("sum", JSON.stringify(0));
   localStorage.setItem("counter", JSON.stringify(0));
+
+  recording = true;
 
   console.log("recording");
   document.getElementById("smellResult").innerHTML = "Start Recording";
