@@ -56,6 +56,7 @@ function startGame() {
 function handleMicrophone(averageLoudness) {
   if (currentActive == microphoneActive) {
     if (!playing) {
+      console.log("Setting up microphone");
       playing = true;
       variant = Math.random() * 2;
       if (variant < 1) {
@@ -64,6 +65,7 @@ function handleMicrophone(averageLoudness) {
         setTextLoud();
       }
     } else {
+      console.log("Playing with microphone");
       highscoreValueText.innerHTML = "Loudness is: " + averageLoudness;
       if (variant < 1 && averageLoudness < 1) {
         variant = -1;
@@ -89,6 +91,7 @@ function handleMicrophone(averageLoudness) {
 function handleOrientation(event) {
   if (currentActive == orientationActive) {
     if (!playing) {
+      console.log("Setting up orientation");
       playing = true;
       variant = Math.random() * 3;
       goalValue = Math.round(Math.random() * 18 - 9) * 10;
@@ -104,6 +107,7 @@ function handleOrientation(event) {
         setTextYAxis(goalValue);
       }
     } else {
+      console.log("Playing with orientation");
       var difference;
       if (variant < 1) {
         difference = event.alpha - startValue;
@@ -140,6 +144,7 @@ function handleOrientation(event) {
 function handleMotion(event) {
   if (currentActive == motionActive) {
     if (!playing) {
+      console.log("Setting up motion");
       playing = true;
       variant = Math.random() * 2;
 
@@ -149,19 +154,20 @@ function handleMotion(event) {
         setTextMove();
       }
     } else {
-        var average = getAverageAcceleration(event);
-        if (average > debug) {
-          highscoreValueText.innerHTML = "Motion average is: " + average;
-          debug = average;
-        }
-        if (variant < 1 && average < 5) {
-          variant = -1;
-          startNextGame();
-        } else if (variant < 2 && average > 5) {
-          variant = -1;
-          startNextGame();
-        }
-        clearStorage();
+      console.log("Playing with motion");
+      var average = getAverageAcceleration(event);
+      if (average > debug) {
+        highscoreValueText.innerHTML = "Motion average is: " + average;
+        debug = average;
+      }
+      if (variant < 1 && average < 3) {
+        variant = -1;
+        startNextGame();
+      } else if (variant < 2 && average > 5) {
+        variant = -1;
+        startNextGame();
+      }
+      clearStorage();
     }
   }
 
@@ -205,7 +211,7 @@ function endGame() {
 
   if (timePlayed < highscoreValue) {
     highscoreValue = timePlayed;
-    setNewHighscore();
+    setNewHighscore(highscoreValue);
   } else {
     setNoNewHighscore();
   }
