@@ -16,14 +16,14 @@
     <script src="../js/game.js"></script>
   </head>
 
-  <body onload='loadHeader("../header.html")'>
+  <body onload='loadHeader("../header.html"); init()'>
     <header id="header"></header>
 
     <h1 id="taskCaption">Lassen Sie uns ein Spiel spielen</h1>
     <p id="taskText">Sie bekommen verschiedene Aufgaben gestellt und müssen versuchen diese so schnell wie möglich auszuführen.</p>
 
-    <button id="startButton" type="button" name="startButton" onclick="startGame()">Spiel starten!</button>
+    <button id="startButton" type="button" text="Spiel starten" name="startButton" onclick="startGame()"></button>
 
-    <p id="highscore"></p>
+    <p id="highscoreText" visibility="hidden">Highscore: <span id="highscoreValueText"></span></p>
   </body>
 </html>

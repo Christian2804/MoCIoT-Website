@@ -1,11 +1,11 @@
 if (window.DeviceOrientationEvent) {
-  window.addEventListener("deviceorientation", deviceOrientationListener);
+  window.addEventListener("deviceorientation", deviceOrientationListener, true);
 } else {
   alert("Es tut mir Leid, aber Ihr Gerät unterstützt diesen Sensor nicht.");
 }
 
 function deviceOrientationListener(event) {
-  var alpha = event.alpha * Math.PI / 180;
+  var alpha = event.alpha;
 
   var image = document.getElementById("compassImage");
   halfWidth = image.naturalWidth / 2;
@@ -13,7 +13,6 @@ function deviceOrientationListener(event) {
 
   var imageCanvas = document.getElementById("aligningCompass");
   var imageContext = imageCanvas.getContext("2d");
-  var text = document.getElementById("aligningText");
 
   canvasWidth = imageCanvas.width;
   canvasHeight = imageCanvas.height;
@@ -23,8 +22,6 @@ function deviceOrientationListener(event) {
   imageContext.rotate(alpha);
   imageContext.translate(-canvasWidth / 2, -canvasHeight / 2);
   imageContext.drawImage(image, 0, 0);
-
-  text.style.transform = "rotate(" + alpha + "deg)";
 }
 
 function loadCompass() {

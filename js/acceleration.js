@@ -13,9 +13,9 @@ function handleDeviceMotion(event) {
   var y = deviceAcceleration.y;
   var z = deviceAcceleration.z;
 
-  var sumArray = Math.sqrt(x*x + y*y + z*z);
+  var vectorValue = Math.sqrt(x*x + y*y + z*z);
   var array = loadArray();
-  var sumArray = addAndStore(array, sumArray);
+  var sumArray = addAndStore(array, vectorValue);
   var average = getAverage(sumArray);
 
   if (average > 30) {
