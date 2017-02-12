@@ -77,7 +77,7 @@ function stopRecording() {
     var counter = JSON.parse(localStorage.getItem("counter"));
     result = sum / counter;
 
-    document.getElementById("smellResult").innerHTML = result;
+    //document.getElementById("smellResult").innerHTML = result;
   }
 
   recording = false;
@@ -91,5 +91,5 @@ function startRecording() {
   recording = true;
 
   console.log("recording");
-  document.getElementById("smellResult").innerHTML = "Start Recording";
+  //document.getElementById("smellResult").innerHTML = "Start Recording";
 }
