@@ -36,16 +36,6 @@ if (window.DeviceMotionEvent) {
   window.addEventListener("devicemotion", getAverageAcceleration);
 }
 
-function listenForOrientation(event) {
-  alpha = event.alpha;
-  beta = event.beta;
-  gamma = event.gamma;
-
-  if (currentActive == orientationActive) {
-    handleOrientation();
-  }
-}
-
 function init() {
   highscoreValue = Number.MAX_SAFE_INTEGER;
   highscoreText = document.getElementById("highscoreText");
@@ -84,9 +74,7 @@ function handleMicrophone() {
         setTextLoud();
       }
     } else {
-      console.log("Playing with microphone");
-      highscoreValueText.innerHTML = "Loudness is: " + averageLoudness;
-      if (variant < 1 && averageLoudness == 0) {
+      if (variant < 1 && averageLoudness < 0.08) {
         variant = -1;
         startNextGame();
       } else if (variant < 2 && averageLoudness > 20) {
@@ -110,7 +98,6 @@ function handleMicrophone() {
 function handleOrientation() {
   if (currentActive == orientationActive) {
     if (!playing) {
-      console.log("Setting up orientation");
       playing = true;
       variant = Math.random() * 3;
       goalValue = Math.round(Math.random() * 18 - 9) * 10;
@@ -126,7 +113,6 @@ function handleOrientation() {
         setTextYAxis();
       }
     } else {
-      console.log("Playing with orientation");
       var difference;
       if (variant < 1) {
         difference = alpha - startValue;
@@ -136,7 +122,6 @@ function handleOrientation() {
         difference = gamma - startValue;
       }
 
-      highscoreValueText.innerHTML = "Device rotation difference is: " + difference;
       if (difference > goalValue - 5 && difference < goalValue + 5) {
         variant = -1;
         startNextGame();
@@ -181,7 +166,6 @@ function handleOrientation() {
 function handleMotion() {
   if (currentActive == motionActive) {
     if (!playing) {
-      console.log("Setting up motion");
       playing = true;
       variant = Math.random() * 2;
 
@@ -191,12 +175,9 @@ function handleMotion() {
         setTextMove();
       }
     } else {
-      console.log("Playing with motion");
       if (motion > debug) {
-        highscoreValueText.innerHTML = "Motion average is: " + motion;
         debug = motion;
       }
-      taskText.innerHTML = "Variante: " + variant;
       if (variant < 1 && motion < 9.5) {
         variant = -1;
         clearStorage();
@@ -259,8 +240,8 @@ function endGame() {
   var endTime = new Date().getTime();
   var timePlayed = (endTime - startTime) / 1000;
   gamesPlayed = -1;
-  startButton.style.visibility = "visible";
   startButton.innerHTML = "Nochmal spielen";
+  startButton.style.visibility = "visible";
 
   if (timePlayed < highscoreValue) {
     highscoreValue = timePlayed;
@@ -325,6 +306,16 @@ if (navigator.getUserMedia) {
     });
 } else {
   console.log("getUserMedia not supported");
+}
+
+function listenForOrientation(event) {
+  alpha = event.alpha;
+  beta = event.beta;
+  gamma = event.gamma;
+
+  if (currentActive == orientationActive) {
+    handleOrientation();
+  }
 }
 
 function getAverageAcceleration(event) {

@@ -32,8 +32,6 @@ if (navigator.getUserMedia) {
 
           var average = values / length;
 
-          text.innerHTML = average;
-
           if (average > 10 && !recording) {
             startRecording();
           } else if (average < 2) {

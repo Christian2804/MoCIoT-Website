@@ -20,18 +20,13 @@ function handleDeviceMotion(event) {
   var sumArray = addAndStore(array, vectorValue);
   var average = getAverage(sumArray);
 
-  if (max < average) {
-    max = average;
-    text.innerHTML = "Average: " + average;
-  }
-
-  /*if (average > 30) {
+  if (average > 30) {
     fontSize = "30px";
   } else if (average > 20) {
     fontSize = "20px";
   } else {
     fontSize = "10px";
-  }*/
+  }
 }
 
 function getAverage (array) {
