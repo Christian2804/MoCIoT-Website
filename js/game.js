@@ -117,13 +117,13 @@ function handleOrientation() {
 
       if (variant < 1) {
         startValue = alpha;
-        setTextZAxis(goalValue);
+        setTextZAxis();
       } else if (variant < 2) {
         startValue = beta;
-        setTextXAxis(goalValue);
+        setTextXAxis();
       } else {
         startValue = gamma;
-        setTextYAxis(goalValue);
+        setTextYAxis();
       }
     } else {
       console.log("Playing with orientation");
@@ -144,18 +144,36 @@ function handleOrientation() {
     }
   }
 
-  function setTextXAxis(amount) {
-    taskCaption.innerHTML = "Neigen Sie das Gerät! (vor/zurück)"
-    taskText.innerHTML = "Neigen Sie das Gerät um " + amount + "° um die X-Achse."
+  function setTextXAxis() {
+    var text;
+    if (goalValue < 0) {
+      text = "hinten"
+    } else {
+      text = "vorne"
+    }
+    taskCaption.innerHTML = "Neigen Sie das Gerät nach " + text + "!";
+    taskText.innerHTML = "Neigen Sie das Gerät um " + goalValue + "° um die X-Achse."
   }
 
   function setTextYAxis() {
-      taskCaption.innerHTML = "Neigen Sie das Gerät! (links/rechts)"
-      taskText.innerHTML = "Neigen Sie das Gerät um " + goalValue + "° um die Y-Achse."
+    var text;
+    if (goalValue < 0) {
+      text = "links"
+    } else {
+      text = "rechts"
+    }
+    taskCaption.innerHTML = "Neigen Sie das Gerät nach " + text + "!";
+    taskText.innerHTML = "Neigen Sie das Gerät um " + goalValue + "° um die Y-Achse."
   }
 
   function setTextZAxis() {
-    taskCaption.innerHTML = "Drehen Sie das Gerät!"
+    var text;
+    if (goalValue < 0) {
+      text = "rechts"
+    } else {
+      text = "links"
+    }
+    taskCaption.innerHTML = "Drehen Sie das Gerät nach " + text + "!";
     taskText.innerHTML = "Drehen Sie das Gerät um " + goalValue + "° um die Z-Achse."
   }
 }
