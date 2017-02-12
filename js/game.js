@@ -89,7 +89,7 @@ function handleMicrophone() {
       if (variant < 1 && averageLoudness < 1) {
         variant = -1;
         startNextGame();
-      } else if (variant < 2 && averageLoudness > 10) {
+      } else if (variant < 2 && averageLoudness > 20) {
         variant = -1;
         startNextGame();
       }
@@ -178,11 +178,11 @@ function handleMotion() {
         highscoreValueText.innerHTML = "Motion average is: " + motion;
         debug = motion;
       }
-      if (variant < 1 && motion < 3) {
+      if (variant < 1 && motion < 10) {
         variant = -1;
         clearStorage();
         startNextGame();
-      } else if (variant < 2 && motion > 5) {
+      } else if (variant < 2 && motion > 15) {
         variant = -1;
         clearStorage();
         startNextGame();
