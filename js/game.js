@@ -104,11 +104,11 @@ function handleOrientation(event) {
     } else {
       var difference;
       if (variant < 1) {
-        difference = Math.abs(event.alpha - startValue);
+        difference = event.alpha - startValue;
       } else if (variant < 2) {
-        difference = Math.abs(event.beta - startValue);
+        difference = event.beta - startValue;
       } else {
-        difference = Math.abs(event.gamma - startValue);
+        difference = event.gamma - startValue;
       }
 
       highscoreValueText.innerHTML = "Device rotation difference is: " + difference;
