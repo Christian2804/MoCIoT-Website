@@ -17,6 +17,7 @@ var startValue;
 
 let gameCounter;
 var gamesPlayed;
+var gameEnded;
 
 var debug;
 
@@ -50,6 +51,7 @@ function init() {
 function startGame() {
   startTime = new Date().getTime();
   startButton.style.visibility = "hidden";
+  gameEnded = false;
   startNextGame();
 }
 
@@ -178,9 +180,10 @@ function handleMotion(event) {
 }
 
 function startNextGame() {
-  var next = Math.random() * 3;
-  gamesPlayed++;
-
+  if (!gameEnded) {
+    var next = Math.random() * 3;
+    gamesPlayed++;
+  }
   if (gamesPlayed < gameCounter) {
       if (next <= motionActive) {
         currentActive = motionActive;
@@ -197,6 +200,7 @@ function startNextGame() {
 }
 
 function endGame() {
+  gameEnded = true;
   var endTime = new Date().getTime();
   var timePlayed = (endTime - startTime) / 1000;
   gamesPlayed = -1;
@@ -210,6 +214,7 @@ function endGame() {
   } else {
     setNoNewHighscore();
   }
+  gameEnded = false;
 
   function setNewHighscore(highscoreValue) {
       taskCaption.innerHTML = "Geschafft! Neuer Highscore!";
