@@ -117,9 +117,9 @@ function handleOrientation() {
       if (variant < 1) {
         difference = alpha - startValue;
       } else if (variant < 2) {
-        difference = beta - startValue;
+        difference = beta;
       } else {
-        difference = gamma - startValue;
+        difference = gamma;
       }
 
       if (difference > goalValue - 5 && difference < goalValue + 5) {
