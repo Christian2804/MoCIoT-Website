@@ -18,6 +18,8 @@ var startValue;
 let gameCounter;
 var gamesPlayed;
 
+var debug;
+
 if (window.DeviceOrientationEvent) {
   window.addEventListener("deviceorientation", handleOrientation);
 }
@@ -41,6 +43,8 @@ function init() {
 
   gameCounter = 5;
   gamesPlayed = -1;
+
+  debug = 0;
 }
 
 function startGame() {
@@ -99,7 +103,6 @@ function handleOrientation(event) {
       }
     } else {
       var difference;
-      highscoreValueText.innerHTML = "Device rotation difference is: " + difference;
       if (variant < 1) {
         difference = Math.abs(event.alpha - startValue);
       } else if (variant < 2) {
@@ -108,6 +111,7 @@ function handleOrientation(event) {
         difference = Math.abs(event.gamma - startValue);
       }
 
+      highscoreValueText.innerHTML = "Device rotation difference is: " + difference;
       if (difference > goalValue - 5 && difference < goalValue + 5) {
         startNextGame();
       }
@@ -143,10 +147,13 @@ function handleMotion(event) {
       }
     } else {
         var average = getAverageAcceleration(event);
-        highscoreValueText.innerHTML = "Motion average is: " + average;
-        if (variant < 1 && average < 2) {
+        debug = getAverageAcceleration(event);
+        if (average > debug) {
+          highscoreValueText.innerHTML = "Motion average is: " + average;
+        }
+        if (variant < 1 && average < 5) {
           startNextGame();
-        } else if (variant < 2 && average > 20) {
+        } else if (variant < 2 && average > 7) {
           startNextGame();
         }
         clearStorage();
