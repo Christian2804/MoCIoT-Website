@@ -153,7 +153,7 @@ function handleMotion(event) {
         }
         if (variant < 1 && average < 5) {
           startNextGame();
-        } else if (variant < 2 && average > 7) {
+        } else if (variant < 2 && average > 5) {
           startNextGame();
         }
         clearStorage();
