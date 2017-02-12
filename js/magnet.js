@@ -7,6 +7,9 @@ if (window.DeviceOrientationEvent) {
 function deviceOrientationListener(event) {
   var alpha = event.alpha;
 
+  var text = document.getElementById("test");
+  text.innerHTML = "Alpha: " + alpha + " Beta: " + event.beta + " Gamma: " + event.gamma;
+
   var image = document.getElementById("compassImage");
   halfWidth = image.naturalWidth / 2;
   halfHeight = image.naturalHeight / 2;
