@@ -147,9 +147,9 @@ function handleMotion(event) {
       }
     } else {
         var average = getAverageAcceleration(event);
-        debug = getAverageAcceleration(event);
         if (average > debug) {
           highscoreValueText.innerHTML = "Motion average is: " + average;
+          debug = average;
         }
         if (variant < 1 && average < 5) {
           startNextGame();
