@@ -39,7 +39,7 @@ if (window.DeviceMotionEvent) {
 function listenForOrientation(event) {
   alpha = event.alpha;
   beta = event.beta;
-  gamma = event.gamme;
+  gamma = event.gamma;
 
   if (currentActive == orientationActive) {
     handleOrientation();
