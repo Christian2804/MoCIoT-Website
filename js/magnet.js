@@ -4,8 +4,16 @@ if (window.DeviceOrientationEvent) {
   alert("Es tut mir Leid, aber Ihr Gerät unterstützt diesen Sensor nicht.");
 }
 
+var oldAlpha = 400;
+
 function deviceOrientationListener(event) {
   var alpha = event.alpha;
+
+  if (oldAlpha == 400) {
+    oldAlpha = alpha;
+  } else {
+    oldAlpha = alpha - oldAlpha;
+  }
 
   var image = document.getElementById("compassImage");
   halfWidth = image.naturalWidth / 2;
@@ -19,7 +27,7 @@ function deviceOrientationListener(event) {
 
   imageContext.clearRect(0, 0, canvasWidth, canvasHeight);
   imageContext.translate(canvasWidth / 2, canvasHeight / 2);
-  imageContext.rotate(alpha);
+  imageContext.rotate(oldAlpha);
   imageContext.translate(-canvasWidth / 2, -canvasHeight / 2);
   imageContext.drawImage(image, 0, 0);
 }

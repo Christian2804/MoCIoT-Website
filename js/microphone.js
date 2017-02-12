@@ -32,10 +32,12 @@ if (navigator.getUserMedia) {
 
           var average = values / length;
 
-          if (average > 10 && !recording) {
-            startRecording();
-          } else if (average < 2) {
+          if (average < 2 && recording && enoughData > 10) {
             stopRecording();
+          }
+
+          if (average > 5) {
+            enoughData++;
           }
 
           if (recording) {
@@ -52,6 +54,7 @@ if (navigator.getUserMedia) {
 }
 
 var recording = false;
+var enoughData = 0;
 
 function storeNumber(number) {
   var currentSum = JSON.parse(localStorage.getItem("sum"));
@@ -73,9 +76,17 @@ function stopRecording() {
     return 0;
   } else {
     var counter = JSON.parse(localStorage.getItem("counter"));
+    var innerHtml = document.getElementById("smellResult").innerHTML;
+    var buttonText = document.getElementById("restartButton").innerHTML;
     result = sum / counter;
 
-    //document.getElementById("smellResult").innerHTML = result;
+    if (result < 10) {
+      innerHtml = "Das riecht nicht so gut";
+    } else {
+      innerHtml = "Das riecht sehr gut";
+    }
+
+    buttonText = "Nochmal riechen!";
   }
 
   recording = false;
@@ -86,8 +97,8 @@ function startRecording() {
   localStorage.setItem("sum", JSON.stringify(0));
   localStorage.setItem("counter", JSON.stringify(0));
 
+  enoughData = 0;
   recording = true;
 
-  console.log("recording");
-  //document.getElementById("smellResult").innerHTML = "Start Recording";
+  document.getElementById("smellResult").innerHTML = "Ich rieche, bitte weiter puster...";
 }
