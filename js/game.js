@@ -86,7 +86,7 @@ function handleMicrophone() {
     } else {
       console.log("Playing with microphone");
       highscoreValueText.innerHTML = "Loudness is: " + averageLoudness;
-      if (variant < 1 && averageLoudness < 1) {
+      if (variant < 1 && averageLoudness == 0) {
         variant = -1;
         startNextGame();
       } else if (variant < 2 && averageLoudness > 20) {
@@ -178,7 +178,8 @@ function handleMotion() {
         highscoreValueText.innerHTML = "Motion average is: " + motion;
         debug = motion;
       }
-      if (variant < 1 && motion < 10) {
+      taskText.innerHTML = "Variante: " + variant;
+      if (variant < 1 && motion < 9.5) {
         variant = -1;
         clearStorage();
         startNextGame();
