@@ -66,8 +66,10 @@ function handleMicrophone(averageLoudness) {
     } else {
       highscoreValueText.innerHTML = "Loudness is: " + averageLoudness;
       if (variant < 1 && averageLoudness < 1) {
+        variant = -1;
         startNextGame();
       } else if (variant < 2 && averageLoudness > 10) {
+        variant = -1;
         startNextGame();
       }
     }
@@ -113,6 +115,7 @@ function handleOrientation(event) {
 
       highscoreValueText.innerHTML = "Device rotation difference is: " + difference;
       if (difference > goalValue - 5 && difference < goalValue + 5) {
+        variant = -1;
         startNextGame();
       }
     }
@@ -152,8 +155,10 @@ function handleMotion(event) {
           debug = average;
         }
         if (variant < 1 && average < 5) {
+          variant = -1;
           startNextGame();
         } else if (variant < 2 && average > 5) {
+          variant = -1;
           startNextGame();
         }
         clearStorage();
