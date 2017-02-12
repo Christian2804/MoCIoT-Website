@@ -16,20 +16,7 @@ function deviceOrientationListener(event) {
   }
 
   var image = document.getElementById("compassImage");
-  halfWidth = image.naturalWidth / 2;
-  halfHeight = image.naturalHeight / 2;
-
-  var imageCanvas = document.getElementById("aligningCompass");
-  var imageContext = imageCanvas.getContext("2d");
-
-  canvasWidth = imageCanvas.width;
-  canvasHeight = imageCanvas.height;
-
-  imageContext.clearRect(0, 0, canvasWidth, canvasHeight);
-  imageContext.translate(canvasWidth / 2, canvasHeight / 2);
-  imageContext.rotate(oldAlpha);
-  imageContext.translate(-canvasWidth / 2, -canvasHeight / 2);
-  imageContext.drawImage(image, 0, 0);
+  image.style.transform = "rotate(" + oldAlpha + "deg)"
 }
 
 function loadCompass() {
