@@ -1,30 +1,49 @@
-var startTime;
-var highscoreValue;
-var highscoreText;
-var highscoreValueText;
-var startButton;
-var taskCaption;
-var taskText;
+let startTime;
+let highscoreValue;
+let highscoreText;
+let highscoreValueText;
+let startButton;
+let taskCaption;
+let taskText;
 
 let microphoneActive;
 let orientationActive;
 let motionActive;
-var currentActive;
-var playing;
-var variant;
-var goalValue;
-var startValue;
+let currentActive;
+let lastActive;
+let playing;
+let variant;
+let goalValue;
+let startValue;
+
+let motion;
+
+let alpha;
+let beta;
+let gamma;
+
+let averageLoudness;
 
 let gameCounter;
-var gamesPlayed;
+let gamesPlayed;
 
-var debug;
+let debug;
 
 if (window.DeviceOrientationEvent) {
-  window.addEventListener("deviceorientation", handleOrientation);
+  window.addEventListener("deviceorientation", listenForOrientation);
 }
 if (window.DeviceMotionEvent) {
-  window.addEventListener("devicemotion", handleMotion);
+  window.addEventListener("devicemotion", getAverageAcceleration);
+}
+
+function listenForOrientation(event) {
+  alpha = event.alpha;
+  beta = event.beta;
+  gamma = event.gamme;
+
+  if (currentActive == orientationActive) {
+    handleOrientation();
+  }
 }
 
 function init() {
@@ -53,7 +72,7 @@ function startGame() {
   startNextGame();
 }
 
-function handleMicrophone(averageLoudness) {
+function handleMicrophone() {
   if (currentActive == microphoneActive) {
     if (!playing) {
       console.log("Setting up microphone");
@@ -88,7 +107,7 @@ function handleMicrophone(averageLoudness) {
   }
 }
 
-function handleOrientation(event) {
+function handleOrientation() {
   if (currentActive == orientationActive) {
     if (!playing) {
       console.log("Setting up orientation");
@@ -97,24 +116,24 @@ function handleOrientation(event) {
       goalValue = Math.round(Math.random() * 18 - 9) * 10;
 
       if (variant < 1) {
-        startValue = event.alpha;
+        startValue = alpha;
         setTextZAxis(goalValue);
       } else if (variant < 2) {
-        startValue = event.beta;
+        startValue = beta;
         setTextXAxis(goalValue);
       } else {
-        startValue = event.gamma;
+        startValue = gamma;
         setTextYAxis(goalValue);
       }
     } else {
       console.log("Playing with orientation");
       var difference;
       if (variant < 1) {
-        difference = event.alpha - startValue;
+        difference = alpha - startValue;
       } else if (variant < 2) {
-        difference = event.beta - startValue;
+        difference = beta - startValue;
       } else {
-        difference = event.gamma - startValue;
+        difference = gamma - startValue;
       }
 
       highscoreValueText.innerHTML = "Device rotation difference is: " + difference;
@@ -141,7 +160,7 @@ function handleOrientation(event) {
   }
 }
 
-function handleMotion(event) {
+function handleMotion() {
   if (currentActive == motionActive) {
     if (!playing) {
       console.log("Setting up motion");
@@ -155,19 +174,19 @@ function handleMotion(event) {
       }
     } else {
       console.log("Playing with motion");
-      var average = getAverageAcceleration(event);
-      if (average > debug) {
-        highscoreValueText.innerHTML = "Motion average is: " + average;
-        debug = average;
+      if (motion > debug) {
+        highscoreValueText.innerHTML = "Motion average is: " + motion;
+        debug = motion;
       }
-      if (variant < 1 && average < 3) {
+      if (variant < 1 && motion < 3) {
         variant = -1;
+        clearStorage();
         startNextGame();
-      } else if (variant < 2 && average > 5) {
+      } else if (variant < 2 && motion > 5) {
         variant = -1;
+        clearStorage();
         startNextGame();
       }
-      clearStorage();
     }
   }
 
@@ -190,12 +209,27 @@ function startNextGame() {
   playing = false;
 
   if (gamesPlayed < gameCounter) {
-      if (next <= motionActive) {
+      if (next <= motionActive && lastActive != motionActive) {
         currentActive = motionActive;
-      } else if (next <= orientationActive) {
+        handleMotion();
+        lastActive = motionActive;
+      } else if (next <= orientationActive && lastActive != orientationActive) {
         currentActive = orientationActive;
-      } else if (next){
+        handleOrientation();
+        lastActive = orientationActive;
+      } else if (lastActive != microphoneActive) {
         currentActive = microphoneActive;
+        handleMicrophone();
+        lastActive = microphoneActive;
+      } else {
+        currentActive = (lastActive + 1) % 3;
+        if (currentActive == motionActive) {
+          handleMotion();
+        } else if (currentActive == orientationActive) {
+          handleOrientation();
+        } else {
+          handleMicrophone();
+        }
       }
   } else {
     endGame();
@@ -207,11 +241,11 @@ function endGame() {
   var timePlayed = (endTime - startTime) / 1000;
   gamesPlayed = -1;
   startButton.style.visibility = "visible";
-  startButton.value = "Nochmal spielen";
+  startButton.innerHTML = "Nochmal spielen";
 
   if (timePlayed < highscoreValue) {
     highscoreValue = timePlayed;
-    setNewHighscore(highscoreValue);
+    setNewHighscore(timePlayed);
   } else {
     setNoNewHighscore();
   }
@@ -219,7 +253,7 @@ function endGame() {
   function setNewHighscore(highscoreValue) {
       taskCaption.innerHTML = "Geschafft! Neuer Highscore!";
       taskText.innerHTML = "Sie haben eine neue Bestzeit aufgestellt, gratulation."
-      highscoreValueText.innerHTML = "" + highscoreValue;
+      highscoreValueText.innerHTML = highscoreValue + " Sekunden";
       highscoreText.style.visibility = "visible";
   }
 
@@ -260,9 +294,11 @@ if (navigator.getUserMedia) {
             values += (array[i]);
           }
 
-          var averageLoudness = values / length;
+          averageLoudness = values / length;
 
-          handleMicrophone(averageLoudness);
+          if (currentActive == microphoneActive) {
+            handleMicrophone();
+          }
         }
     },
     function(err) {
@@ -281,9 +317,11 @@ function getAverageAcceleration(event) {
   var vectorValue = Math.cbrt(x*x + y*y + z*z);
   var array = loadArray();
   var sumArray = addAndStore(array, vectorValue);
-  var average = getAverage(sumArray);
+  motion = getAverage(sumArray);
 
-  return average;
+  if (currentActive == motionActive) {
+    handleMotion();
+  }
 }
 
 function getAverage (array) {
