@@ -175,25 +175,27 @@ function handleMotion(event) {
 function startNextGame() {
   var next = Math.random() * 3;
   gamesPlayed++;
-  playing = false;
 
   if (gamesPlayed < gameCounter) {
       if (next <= motionActive) {
         currentActive = motionActive;
       } else if (next <= orientationActive) {
         currentActive = orientationActive;
-      } else {
+      } else if (next){
         currentActive = microphoneActive;
       }
   } else {
     endGame();
   }
+
+  playing = false;
 }
 
 function endGame() {
   var endTime = new Date().getTime();
   var timePlayed = (endTime - startTime) / 1000;
   gamesPlayed = -1;
+  currentActive = -1;
   startButton.style.visibility = "visible";
   startButton.value = "Nochmal spielen";
 
