@@ -4,6 +4,8 @@ if (window.DeviceMotionEvent) {
   alert("Es tut mir Leid, aber Ihr Gerät unterstützt diesen Sensor nicht.");
 }
 
+var max = 0;
+
 function handleDeviceMotion(event) {
   var text = document.getElementById("scalingText");
   var fontSize = text.style.fontSize;
@@ -18,7 +20,10 @@ function handleDeviceMotion(event) {
   var sumArray = addAndStore(array, vectorValue);
   var average = getAverage(sumArray);
 
-  text.innerHTML = "Average: " + average;
+  if (max < average) {
+    max = average;
+    text.innerHTML = "Average: " + average;
+  }
 
   /*if (average > 30) {
     fontSize = "30px";
