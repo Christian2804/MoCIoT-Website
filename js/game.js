@@ -59,6 +59,7 @@ function init() {
 function startGame() {
   startTime = new Date().getTime();
   startButton.css("visibility", "hidden");
+  highscoreText.css("visibility", "hidden");
   startNextGame();
 }
 
@@ -248,12 +249,12 @@ function endGame() {
   } else {
     setNoNewHighscore();
   }
+  highscoreText.css("visibility", "visible");
 
   function setNewHighscore(highscoreValue) {
       taskCaption.text("Geschafft! Neuer Highscore!")
       taskText.text("Sie haben eine neue Bestzeit aufgestellt, Gratulation.")
       highscoreValueText.text("" + highscoreValue + " Sekunden")
-      highscoreText.css("visibility", "visible");
   }
 
   function setNoNewHighscore() {
