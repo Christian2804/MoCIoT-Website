@@ -1,5 +1,6 @@
 #buttonHolder {
-  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #startButton {
@@ -7,7 +8,6 @@
   background-color: #FF4081;
   border: none;
   color: black;
-  position: absolute;
   text-align: center;
   text-decoration: none;
   display: inline-block;
