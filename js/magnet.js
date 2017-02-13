@@ -24,13 +24,15 @@ function deviceOrientationListener(event) {
   imageContext.rotate(oldAlpha);
   imageContext.rotate(alpha);
   imageContext.translate(-canvasWidth / 2, -canvasHeight / 2);
-  imageContext.drawImage(image, 0, 0);
+  imageContext.drawImage(image, canvasWidth/2 - halfWidth, canvasHeight/2 - halfHeight);
 
   oldAlpha = -alpha;
 }
 
 function loadCompass() {
   var compassCanvas = document.getElementById("aligningCompass");
+  var width = $("#aligningCompass").width();
+  $("#aligningCompass").css("height", width);
   var compassContext = compassCanvas.getContext("2d");
   var img = document.getElementById("compassImage");
 
