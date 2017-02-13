@@ -19,9 +19,9 @@ function handleDeviceMotion(event) {
   var sumArray = addAndStore(array, vectorValue);
   var average = getAverage(sumArray);
 
-  if (average > 9) {
+  if (average > 6) {
     text.css("font-size", "x-large");
-  } else if (average > 6) {
+  } else if (average > 5) {
     text.css("font-size", "large")
   } else {
     text.css("font-size", "medium")
