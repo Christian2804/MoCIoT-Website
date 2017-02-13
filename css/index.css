@@ -9,10 +9,12 @@ h1 h3 {
   margin-top: 0;
   width: 80%;
   text-align: center;
-  background-color: #00BCD4
+  background-color: #00BCD4;
+  display: inline-block;
 }
 
 p {
+  display: inline-block;
   width: 80%
   text-align: center;
 }
