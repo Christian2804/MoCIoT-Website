@@ -1,5 +1,7 @@
 #startButton {
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15dp 32dp;
   background-color: #FF4081;
   border: none;
   color: black;
