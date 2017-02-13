@@ -1,13 +1,13 @@
 #startButton {
   margin-left: auto;
   margin-right: auto;
-  padding: 15dp 32dp;
+  padding: 15px 32px;
   background-color: #FF4081;
   border: none;
   color: black;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 20sp;
-  border-radius: 8dp;
+  font-size: 20px;
+  border-radius: 8px;
 }
