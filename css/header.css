@@ -1,7 +1,13 @@
-ul {
-  list-style-type: none;
+header {
   text-align: center;
   position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+  width: 100%;
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -9,7 +15,7 @@ ul {
 }
 
 li {
-  float: left;
+  float: none;;
 }
 
 li a, #dropDownItem {
