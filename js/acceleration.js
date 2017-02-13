@@ -4,8 +4,8 @@ if (window.DeviceMotionEvent) {
   alert("Es tut mir Leid, aber Ihr Gerät unterstützt diesen Sensor nicht.");
 }
 
-var max = 0;
-var startAcceleration = -1;
+let max = 0;
+let startAcceleration = -1;
 
 function handleDeviceMotion(event) {
   var text = $("#scalingText");
@@ -21,9 +21,9 @@ function handleDeviceMotion(event) {
   var average = getAverage(sumArray);
   var difference = average - startAcceleration;
 
-  if (difference > 3) {
+  if (difference > 2) {
     text.css("font-size", "x-large");
-  } else if (average > 1) {
+  } else if (difference > 1) {
     text.css("font-size", "large")
   } else {
     text.css("font-size", "medium")
