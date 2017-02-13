@@ -10,6 +10,14 @@ li {
   float: left;
 }
 
+li a, #dropDownItem {
+  display: inline-block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
 li a:hover, #dropDown:hover, #dropDownItem {
   background-color: #FF4081;
 }
@@ -39,6 +47,6 @@ li#dropDown {
   background-color: #FF80AB
 }
 
-#dropDown:hover .dropDownContent {
+#dropDown:hover #dropDownContent {
   display: block;
 }
