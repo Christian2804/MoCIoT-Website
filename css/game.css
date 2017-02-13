@@ -1,9 +1,13 @@
+#buttonHolder {
+  text-align: center;
+}
+
 #startButton {
-  margin: 0 auto;
   padding: 32px 64px;
   background-color: #FF4081;
   border: none;
   color: black;
+  position: absolute;
   text-align: center;
   text-decoration: none;
   display: inline-block;

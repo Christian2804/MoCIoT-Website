@@ -38,11 +38,11 @@ if (window.DeviceMotionEvent) {
 
 function init() {
   highscoreValue = Number.MAX_SAFE_INTEGER;
-  highscoreText = document.getElementById("highscoreText");
-  highscoreValueText = document.getElementById("highscoreValueText");
-  startButton = document.getElementById("startButton");
-  taskCaption = document.getElementById("taskCaption");
-  taskText = document.getElementById("taskText");
+  highscoreText = $("#highscoreText");
+  highscoreValueText = $("#highscoreValueText");
+  startButton = $("#startButton");
+  taskCaption = $("#taskCaption");
+  taskText = $("#taskText");
 
   microphoneActive = 3;
   orientationActive = 2;
@@ -58,14 +58,13 @@ function init() {
 
 function startGame() {
   startTime = new Date().getTime();
-  startButton.style.visibility = "hidden";
+  startButton.css("visibility", "hidden");
   startNextGame();
 }
 
 function handleMicrophone() {
   if (currentActive == microphoneActive) {
     if (!playing) {
-      console.log("Setting up microphone");
       playing = true;
       variant = Math.random() * 2;
       if (variant < 1) {
@@ -85,13 +84,13 @@ function handleMicrophone() {
   }
 
   function setTextQuiet() {
-    taskCaption.innerHTML = "Seien Sie ganz leise!"
-    taskText.innerHTML = "Sie können auch versuchen das Microfon abzudecken."
+    taskCaption.text("Seien Sie ganz leise!");
+    taskText.text("Sie können auch versuchen das Microfon abzudecken.")
   }
 
   function setTextLoud() {
-    taskCaption.innerHTML = "Seien Sie ganz laut!"
-    taskText.innerHTML = "Sie können auch einfach in das Mikrofon pusten, das ist vielleicht angebrachter."
+    taskCaption.text("Seien Sie ganz laut!")
+    taskText.text("Sie können auch einfach in das Mikrofon pusten, das ist vielleicht angebrachter.")
   }
 }
 
@@ -136,8 +135,8 @@ function handleOrientation() {
     } else {
       text = "hinten"
     }
-    taskCaption.innerHTML = "Neigen Sie das Gerät nach " + text + "!";
-    taskText.innerHTML = "Neigen Sie das Gerät um " + goalValue + "° um die X-Achse."
+    taskCaption.text("Neigen Sie das Gerät nach " + text + "!");
+    taskText.text("Neigen Sie das Gerät um " + goalValue + "° um die X-Achse.")
   }
 
   function setTextYAxis() {
@@ -147,8 +146,8 @@ function handleOrientation() {
     } else {
       text = "rechts"
     }
-    taskCaption.innerHTML = "Neigen Sie das Gerät nach " + text + "!";
-    taskText.innerHTML = "Neigen Sie das Gerät um " + goalValue + "° um die Y-Achse."
+    taskCaption.text("Neigen Sie das Gerät nach " + text + "!");
+    taskText.text("Neigen Sie das Gerät um " + goalValue + "° um die Y-Achse.")
   }
 
   function setTextZAxis() {
@@ -158,8 +157,8 @@ function handleOrientation() {
     } else {
       text = "links"
     }
-    taskCaption.innerHTML = "Drehen Sie das Gerät nach " + text + "!";
-    taskText.innerHTML = "Drehen Sie das Gerät um " + goalValue + "° um die Z-Achse."
+    taskCaption.text("Drehen Sie das Gerät nach " + text + "!");
+    taskText.text("Drehen Sie das Gerät um " + goalValue + "° um die Z-Achse.")
   }
 }
 
@@ -177,7 +176,6 @@ function handleMotion() {
     } else {
       if (motion > debug) {
         debug = motion;
-        $("#highscoreValueText").text(motion);
       }
       if (variant < 1 && motion < 4.5) {
         variant = -1;
@@ -192,13 +190,13 @@ function handleMotion() {
   }
 
   function setTextDontMove() {
-    taskCaption.innerHTML = "Halten Sie das Gerät still!";
-    taskText.innerHTML = "Nervös? Dann können Sie das Gerät auch hinlegen.";
+    taskCaption.text("Halten Sie das Gerät still!")
+    taskText.text("Nervös? Dann können Sie das Gerät auch hinlegen.")
   }
 
   function setTextMove() {
-    taskCaption.innerHTML = "Schütteln Sie das Gerät!";
-    taskText.innerHTML = "Sie müssen stärker schütteln!";
+    taskCaption.text("Schütteln Sie das Gerät!")
+    taskText.text("Sie müssen stärker schütteln!")
   }
 
 }
@@ -241,8 +239,8 @@ function endGame() {
   var endTime = new Date().getTime();
   var timePlayed = (endTime - startTime) / 1000;
   gamesPlayed = -1;
-  startButton.innerHTML = "Nochmal spielen";
-  startButton.style.visibility = "visible";
+  startButton.text("Nochmal spielen");
+  startButton.css("visibility", "visible")
 
   if (timePlayed < highscoreValue) {
     highscoreValue = timePlayed;
@@ -252,15 +250,15 @@ function endGame() {
   }
 
   function setNewHighscore(highscoreValue) {
-      taskCaption.innerHTML = "Geschafft! Neuer Highscore!";
-      taskText.innerHTML = "Sie haben eine neue Bestzeit aufgestellt, gratulation."
-      highscoreValueText.innerHTML = highscoreValue + " Sekunden";
-      highscoreText.style.visibility = "visible";
+      taskCaption.text("Geschafft! Neuer Highscore!")
+      taskText.text("Sie haben eine neue Bestzeit aufgestellt, Gratulation.")
+      highscoreValueText.text("" + highscoreValue + " Sekunden")
+      highscoreText.css("visibility", "visible");
   }
 
   function setNoNewHighscore() {
-      taskCaption.innerHTML = "Leider zu langsam.";
-      taskText.innerHTML = "Sie waren leider zu langsam, aber versuchen Sie es doch erneut."
+      taskCaption.text("Leider zu langsam.");
+      taskText.text("Sie waren leider zu langsam, aber versuchen Sie es doch erneut.")
   }
 
 }
