@@ -132,9 +132,9 @@ function handleOrientation() {
   function setTextXAxis() {
     var text;
     if (goalValue < 0) {
-      text = "hinten"
-    } else {
       text = "vorne"
+    } else {
+      text = "hinten"
     }
     taskCaption.innerHTML = "Neigen Sie das Gerät nach " + text + "!";
     taskText.innerHTML = "Neigen Sie das Gerät um " + goalValue + "° um die X-Achse."
@@ -182,7 +182,7 @@ function handleMotion() {
         variant = -1;
         clearStorage();
         startNextGame();
-      } else if (variant < 2 && motion > 15) {
+      } else if (variant < 2 && motion > 13) {
         variant = -1;
         clearStorage();
         startNextGame();
