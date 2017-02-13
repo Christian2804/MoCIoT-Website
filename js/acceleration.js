@@ -22,7 +22,7 @@ function handleDeviceMotion(event) {
 
   if (average > 30) {
     fontSize = "30px";
-  } else if (average > 20) {
+  } else if (average > 1) {
     fontSize = "20px";
   } else {
     fontSize = "10px";
@@ -35,7 +35,7 @@ function getAverage (array) {
 
 function addAndStore (array, number) {
   var length = array.length;
-  if (length >= 10) {
+  if (length >= 50) {
     array.shift();
   }
   array.push(number);
