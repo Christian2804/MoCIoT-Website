@@ -5,6 +5,7 @@ if (window.DeviceMotionEvent) {
 }
 
 var max = 0;
+var startAcceleration = -1;
 
 function handleDeviceMotion(event) {
   var text = $("#scalingText");
@@ -18,10 +19,11 @@ function handleDeviceMotion(event) {
   var array = loadArray();
   var sumArray = addAndStore(array, vectorValue);
   var average = getAverage(sumArray);
+  var difference = average - startAcceleration;
 
-  if (average > 6) {
+  if (difference > 3) {
     text.css("font-size", "x-large");
-  } else if (average > 5) {
+  } else if (average > 1) {
     text.css("font-size", "large")
   } else {
     text.css("font-size", "medium")
@@ -34,8 +36,11 @@ function getAverage (array) {
 
 function addAndStore (array, number) {
   var length = array.length;
-  if (length >= 50) {
+  if (length >= 20) {
     array.shift();
+    if (startAcceleration == -1) {
+      startAcceleration = getAverage(array);
+    }
   }
   array.push(number);
 

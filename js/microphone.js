@@ -1,3 +1,5 @@
+var startTime;
+
 navigator.getUserMedia = navigator.getUserMedia ||
   navigator.webkitGetUserMedia ||
   navigator.mozGetUserMedia;
@@ -31,13 +33,9 @@ if (navigator.getUserMedia) {
           }
 
           var average = values / length;
-
-          if (average < 2 && recording && enoughData > 10) {
+          var timeElapsed = new Date().getTime() - startTime;
+          if (timeElapsed > 3000) {
             stopRecording();
-          }
-
-          if (average > 5) {
-            enoughData++;
           }
 
           if (recording) {
@@ -90,6 +88,7 @@ function stopRecording() {
   }
 
   recording = false;
+  $("#restartButton").css("visibility", "visible");
 }
 
 function startRecording() {
@@ -99,6 +98,8 @@ function startRecording() {
 
   enoughData = 0;
   recording = true;
+  startTime = new Date().getTime();
 
-  document.getElementById("smellResult").innerHTML = "Ich rieche, bitte weiter puster...";
+  $("#smellResult").text("Ich rieche, bitte weiter puster...");
+  $("#restartButton").css("visibility", "hidden");
 }

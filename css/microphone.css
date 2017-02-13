@@ -1,0 +1,15 @@
+#buttonHolder {
+  text-align: center;
+}
+
+#restartButton {
+  padding: 32px 64px;
+  background-color: #FF4081;
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: x-large;
+  border-radius: 8px;
+}
