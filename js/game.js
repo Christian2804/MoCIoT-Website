@@ -182,7 +182,7 @@ function handleMotion() {
         variant = -1;
         clearStorage();
         startNextGame();
-      } else if (variant < 2 && motion > 13) {
+      } else if (variant < 2 && motion > 10) {
         variant = -1;
         clearStorage();
         startNextGame();
