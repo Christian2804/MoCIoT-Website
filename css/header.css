@@ -1,6 +1,5 @@
 header {
   position: relative;
-  height: 10vh;
   margin: 0;
   padding: 0;
   background-color: #00BCD4;
@@ -11,7 +10,7 @@ ul {
   list-style-type: none;
   font-size: large;
   width: 100%;
-  height: inherit;
+  height: 10vh;
   margin: 0 auto;
   padding: 0;
   overflow: hidden;
