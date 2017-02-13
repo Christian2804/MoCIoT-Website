@@ -3,14 +3,14 @@ body {
 }
 
 h1, h3 {
-  margin: 0 auto;
+  margin-top: 0;
   font-size: x-large;
   background-color: #00BCD4;
-  width: 80%;
+  text-align: center;
 }
 
 p {
   font-size: large;
   width: 80%;
-  margin 0 auto;
+  text-align: center;
 }
