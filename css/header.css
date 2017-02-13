@@ -3,6 +3,7 @@ header {
   position: relative;
   margin: 0;
   padding: 0;
+  background-color: #00BCD4;
 }
 
 ul {
@@ -11,7 +12,6 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #00BCD4;
 }
 
 li {
