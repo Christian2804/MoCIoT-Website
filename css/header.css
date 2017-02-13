@@ -4,6 +4,7 @@ header {
   margin: 0;
   padding: 0;
   background-color: #00BCD4;
+  border-radius: 4px;
 }
 
 ul {
@@ -29,6 +30,7 @@ li a, #dropDownItem {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  border-radius: 4px;
 }
 
 li a:hover, #dropDown:hover, #dropDownItem:hover {
