@@ -18,7 +18,7 @@ li a, #dropDownItem {
   text-decoration: none;
 }
 
-li a:hover, #dropDown:hover, #dropDownItem {
+li a:hover, #dropDown:hover, #dropDownItem:hover {
   background-color: #FF4081;
 }
 
