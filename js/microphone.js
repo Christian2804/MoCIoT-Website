@@ -74,14 +74,13 @@ function stopRecording() {
     return 0;
   } else {
     var counter = JSON.parse(localStorage.getItem("counter"));
-    var innerHtml = document.getElementById("smellResult").innerHTML;
     var buttonText = document.getElementById("restartButton").innerHTML;
     result = sum / counter;
 
     if (result < 10) {
-      innerHtml = "Das riecht nicht so gut";
+      $("#smellResult").text("Das riecht nicht so gut");
     } else {
-      innerHtml = "Das riecht sehr gut";
+      $("#smellResult").text("Das riecht sehr gut")
     }
 
     buttonText = "Nochmal riechen!";
