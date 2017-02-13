@@ -177,7 +177,7 @@ function handleMotion() {
     } else {
       if (motion > debug) {
         debug = motion;
-          $("highscoreValueText").text(debug);
+        $("#highscoreValueText").text(debug);
       }
       if (variant < 1 && motion < 9.5) {
         variant = -1;
