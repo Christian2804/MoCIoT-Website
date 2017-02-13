@@ -15,6 +15,7 @@ h1 h3 {
 
 p {
   display: inline-block;
-  width: 80%
+  font-size: medium;
+  width: 80%;
   margin 0 auto;
 }
