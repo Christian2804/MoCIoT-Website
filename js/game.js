@@ -132,9 +132,9 @@ function handleOrientation() {
   function setTextXAxis() {
     var text;
     if (goalValue < 0) {
-      text = "vorne"
-    } else {
       text = "hinten"
+    } else {
+      text = "vorne"
     }
     taskCaption.text("Neigen Sie das Gerät nach " + text + "!");
     taskText.text("Neigen Sie das Gerät um " + goalValue + "° um die X-Achse.")

@@ -10,7 +10,7 @@ ul {
   list-style-type: none;
   font-size: large;
   width: 100%;
-  height: 10vh;
+  height: 10vh
   margin: 0 auto;
   padding: 0;
   overflow: hidden;
@@ -18,6 +18,7 @@ ul {
 
 li {
   float: left;
+  height: inherit;
   margin: 0 auto;
 }
 
