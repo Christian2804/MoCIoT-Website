@@ -3,16 +3,13 @@ body {
 }
 
 h1, h3 {
-  margin-top: 0 auto;
-  width: 80%;
-  text-align: center;
-  background-color: #00BCD4;
+  margin: 0 auto;
   font-size: x-large;
-  display: inline-block;
+  background-color: #00BCD4;
+  width: 80%;
 }
 
 p {
-  display: inline-block;
   font-size: large;
   width: 80%;
   margin 0 auto;
