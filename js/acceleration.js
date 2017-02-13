@@ -7,8 +7,7 @@ if (window.DeviceMotionEvent) {
 var max = 0;
 
 function handleDeviceMotion(event) {
-  var text = document.getElementById("scalingText");
-  var fontSize = text.style.fontSize;
+  var text = $("#scalingText");
 
   var deviceAcceleration = event.accelerationIncludingGravity;
   var x = deviceAcceleration.x;
@@ -20,12 +19,12 @@ function handleDeviceMotion(event) {
   var sumArray = addAndStore(array, vectorValue);
   var average = getAverage(sumArray);
 
-  if (average > 30) {
-    fontSize = "30px";
-  } else if (average > 1) {
-    fontSize = "20px";
+  if (average > 9) {
+    text.css("font-size", "x-large");
+  } else if (average > 6) {
+    text.css("font-size", "large")
   } else {
-    fontSize = "10px";
+    text.css("font-size", "medium")
   }
 }
 
