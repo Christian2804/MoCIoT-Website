@@ -7,7 +7,7 @@ function loadHeader(location) {
       link.id   = cssId;
       link.rel  = 'stylesheet';
       link.type = 'text/css';
-      link.href = 'https://christian2804.github.io/MoCIoT-Website/css/header.css';
+      link.href = 'https://christiannavolskyi.github.io/MoCIoT-Website/css/header.css';
       link.media = 'all';
       head.appendChild(link);
   }
